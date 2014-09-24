@@ -2,6 +2,7 @@ package com.muthu.rest;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.MatrixParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -53,5 +54,13 @@ public class MathService {
 		@Path("matrix")
 		public int sub(@MatrixParam("a") int a,@MatrixParam("b")int b){
 			return a+b;
+		}
+		
+	 //Use @HeadParam to get header info from request
+	//http://localhost:8080/JerseyRest/Math/header
+		@GET
+		@Path("header")
+		public String geUserAgentFromHeader(@HeaderParam("User-Agent")String userAgent ){
+			return userAgent;
 		}
 }
