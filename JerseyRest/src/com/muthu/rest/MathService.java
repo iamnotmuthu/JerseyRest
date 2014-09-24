@@ -1,6 +1,7 @@
 package com.muthu.rest;
 
 import javax.servlet.http.Cookie;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
@@ -76,4 +77,13 @@ public class MathService {
 			return name;
 		}
 	
+	//Use @BeanParam to aggregate all other type of param annotations.
+	//below ex: used queryparam and path param.
+	//http://localhost:8080/JerseyRest/Math/userbean/muthu?pass=passda
+		@GET
+		@Path("userbean/{user}")
+		public String getBean(@BeanParam UserBean ub){
+			return ub.toString();
+		}
 }
+
