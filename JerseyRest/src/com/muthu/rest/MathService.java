@@ -1,9 +1,13 @@
 package com.muthu.rest;
 
+import javax.servlet.http.Cookie;
+import javax.ws.rs.CookieParam;
 import javax.ws.rs.DefaultValue;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.MatrixParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
@@ -63,4 +67,13 @@ public class MathService {
 		public String geUserAgentFromHeader(@HeaderParam("User-Agent")String userAgent ){
 			return userAgent;
 		}
+	
+	//Use @FormParam to get the content from jspform.
+	//http://localhost:8080/JerseyRest/Math/form ; use post and add payload form.	
+		@Path("form")
+		@POST
+		public String getFormParam(@FormParam("name")String name){
+			return name;
+		}
+	
 }
