@@ -25,4 +25,12 @@ public class MathService {
 			System.out.print(a+b);
 			return a+b;
 		}
+		
+	//Use @PathParam annotation, to get params for url
+		@GET
+		@Path("addfrompath/{a}/{b}")
+		public float add(@PathParam("a")int a, @PathParam("b")float b){
+			
+			return a+b;
+		}
 }
