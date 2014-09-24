@@ -74,7 +74,7 @@ public class MathService {
 		@Path("form")
 		@POST
 		public String getFormParam(@FormParam("name")String name){
-			return name;
+			return "Hi "+name;
 		}
 	
 	//Use @BeanParam to aggregate all other type of param annotations.
