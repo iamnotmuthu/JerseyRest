@@ -17,4 +17,12 @@ public class MathService {
 	public int add(){	
 		return a+b;
 	}
+	
+	//Use @QueryParam annotation, to get params for request
+		@GET
+		@Path("addargs")
+		public int add(@QueryParam("a")int a, @QueryParam("b")int b){
+			System.out.print(a+b);
+			return a+b;
+		}
 }
