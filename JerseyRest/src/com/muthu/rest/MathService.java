@@ -1,5 +1,6 @@
 package com.muthu.rest;
 
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -30,6 +31,14 @@ public class MathService {
 		@GET
 		@Path("addfrompath/{a}/{b}")
 		public float add(@PathParam("a")int a, @PathParam("b")float b){
+			
+			return a+b;
+		}
+		
+	//Use @DefaultValue annotation, to set default value in case of param miss. 
+		@GET
+		@Path("default")
+		public float add(@QueryParam("a")float a,@DefaultValue("20") @QueryParam("b")float b){
 			
 			return a+b;
 		}
