@@ -7,10 +7,16 @@ import javax.ws.rs.core.Response;
 
 public class MainClient {
 
+	Client client=ClientBuilder.newClient();
+	WebTarget target=null;
+	
 	public static void main(String[] args) {
-		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:8080/JerseyRest/Math/noarg");
-		
+		new MainClient().getMethod();
+	}
+	
+	void getMethod(){
+		target=client.target("http://localhost:8080/JerseyRest/Math/noarg");
+	
 		//To get response from server
 		Response resp=target.request().get();
 		System.out.println(resp);
@@ -19,5 +25,7 @@ public class MainClient {
 		String response=target.request().get(String.class);
 		System.out.print(response);
 		
+		//
 	}
+	
 }
