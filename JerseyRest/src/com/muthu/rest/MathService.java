@@ -2,6 +2,7 @@ package com.muthu.rest;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.MatrixParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
@@ -13,6 +14,7 @@ public class MathService {
 	int b=20;
 	
 	//Standard Services; doesn't accepts any args; returns int.
+	//http://localhost:8080/JerseyRest/Math/noarg
 	@GET
 	@Path("noarg")
 	public int add(){	
@@ -20,6 +22,7 @@ public class MathService {
 	}
 	
 	//Use @QueryParam annotation, to get params for request
+	//http://localhost:8080/JerseyRest/Math/addargs?a=44&b=44
 		@GET
 		@Path("addargs")
 		public int add(@QueryParam("a")int a, @QueryParam("b")int b){
@@ -28,6 +31,7 @@ public class MathService {
 		}
 		
 	//Use @PathParam annotation, to get params for url
+	//http://localhost:8080/JerseyRest/Math/addfrompath/22/33
 		@GET
 		@Path("addfrompath/{a}/{b}")
 		public float add(@PathParam("a")int a, @PathParam("b")float b){
@@ -36,10 +40,18 @@ public class MathService {
 		}
 		
 	//Use @DefaultValue annotation, to set default value in case of param miss. 
+	//http://localhost:8080/JerseyRest/Math/default?a=22
 		@GET
 		@Path("default")
 		public float add(@QueryParam("a")float a,@DefaultValue("20") @QueryParam("b")float b){
 			
+			return a+b;
+		}
+	//Matrix param is like query param, but delimited by semi colon(;)
+	//http://localhost:8080/JerseyRest/Math/matrix;a=33;b=44
+		@GET
+		@Path("matrix")
+		public int sub(@MatrixParam("a") int a,@MatrixParam("b")int b){
 			return a+b;
 		}
 }
