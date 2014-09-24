@@ -11,8 +11,7 @@ public class MathService {
 	int a=10;
 	int b=20;
 	
-	
-	//Services doesn't accepts any args; returns int
+	//Standard Services doesn't accepts any args; returns int
 	@GET
 	@Path("noarg")
 	public int add(){
@@ -20,20 +19,4 @@ public class MathService {
 		return a+b;
 	}
 	
-	//Use @QueryParam annotation, to get params for request
-	@GET
-	@Path("addargs")
-	
-	public int add(@QueryParam("a")int a, @QueryParam("b")int b){
-		System.out.print(a+b);
-		return a+b;
-	}
-	
-	//Use @PathParam annotation, to get params for url
-	@GET
-	@Path("addfrompath/{a}/{b}")
-	public float add(@PathParam("a")int a, @PathParam("b")float b){
-		
-		return a+b;
-	}
 }
