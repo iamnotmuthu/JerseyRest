@@ -8,15 +8,13 @@ import javax.ws.rs.QueryParam;
 @Path("Math")
 public class MathService {
 
-	int a=10;
+	int a=30;
 	int b=20;
 	
-	//Standard Services doesn't accepts any args; returns int
+	//Standard Services; doesn't accepts any args; returns int.
 	@GET
 	@Path("noarg")
-	public int add(){
-		
+	public int add(){	
 		return a+b;
 	}
-	
 }
