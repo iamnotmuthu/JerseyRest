@@ -12,10 +12,12 @@ public class MainClient {
 
 	Client client=ClientBuilder.newClient();
 	WebTarget target=null;
-	
+	String resp=null;
 	public static void main(String[] args) {
 		//new MainClient().getMethod();
-		new MainClient().postMethod();
+		//new MainClient().postMethod();
+		new MainClient().getWithParam();
+		new MainClient().getWithQueryParam();
 	}
 	
 	void getMethod(){
@@ -38,7 +40,29 @@ public class MainClient {
 		MultivaluedHashMap mvp=new MultivaluedHashMap();
 		mvp.add("name", "muthu");
 		mvp.add("age", "22");
-		String resp = target.request().post(Entity.form(mvp),String.class);
+		resp = target.request().post(Entity.form(mvp),String.class);
 		System.out.print(resp);
 	}
+	
+	
+	//Define path variable in  path("{}") and use resolve template to substitude value in it.
+	void getWithParam(){
+		target=client.target("http://localhost:8080/JerseyRest/Math/addfrompath");
+		resp=target.path("{a}").resolveTemplate("a","29").path("{b}").resolveTemplate("b", "55").request().get(String.class);
+		System.out.print(resp);
+	}
+
+	//Use path("subresource") to define subresource and queryParam to add query params in it.
+	void getWithQueryParam(){
+		target=client.target("http://localhost:8080/JerseyRest/Math");
+		resp=target.path("addargs").queryParam("a", "44").queryParam("b", "99").request().get(String.class);
+		System.out.print(resp);
+	}
+	
+	
+	/*
+	 * Matrixparam,cookieparam are same as above.
+	 * Nothing specific to be done for bean param.As bean param is aggregation of all other types, wld be taken care by server
+	 * side script. here define as respective params (i.e)query/path params....
+	 */
 }
