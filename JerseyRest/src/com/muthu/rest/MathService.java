@@ -2,6 +2,7 @@ package com.muthu.rest;
 
 import javax.servlet.http.Cookie;
 import javax.ws.rs.BeanParam;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
@@ -11,7 +12,10 @@ import javax.ws.rs.MatrixParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("Math")
 public class MathService {
@@ -85,5 +89,26 @@ public class MathService {
 		public String getBean(@BeanParam UserBean ub){
 			return ub.toString();
 		}
+		
+		/*
+		 * Use @Consumes to filter the service, based on content type
+		 * http://localhost:8080/JerseyRest/Math/consume
+		 * above is the url for below 2 methods. Matches based on request content type.
+		 */
+		
+		@Path("consume")
+		@POST
+		@Consumes("application/xml")
+		public String postwithConsume(){
+			return "I Consume xml";
+		}
+		
+		@Path("consume")
+		@POST
+		@Consumes("text/plain")
+		public String postwithConsumer(){
+			return "I consume  plain text";
+		}
+		
 }
 

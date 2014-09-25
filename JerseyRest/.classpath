@@ -10,5 +10,8 @@
 	<classpathentry kind="lib" path="C:/Muthu/Technical/softwares/apache-tomcat-8.0.12/apache-tomcat-8.0.12/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="C:/Muthu/Technical/softwares/apache-tomcat-8.0.12/apache-tomcat-8.0.12/lib/servlet-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jersey"/>
+	<classpathentry kind="lib" path="C:/Muthu/Technical/softwares/Jackson/jackson-annotations-2.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Muthu/Technical/softwares/Jackson/jackson-databind-2.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Muthu/Technical/softwares/Jackson/com.fasterxml.jackson.core.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

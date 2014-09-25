@@ -18,6 +18,7 @@ public class MainClient {
 		//new MainClient().postMethod();
 		new MainClient().getWithParam();
 		new MainClient().getWithQueryParam();
+		new MainClient().postWithConsumes();
 	}
 	
 	void getMethod(){
@@ -65,4 +66,15 @@ public class MainClient {
 	 * Nothing specific to be done for bean param.As bean param is aggregation of all other types, wld be taken care by server
 	 * side script. here define as respective params (i.e)query/path params....
 	 */
+	
+	/*
+	 * Use accept to filter the service, based on content type(Consumes)
+	 * @serverside - it consumes, so from client, we sent Accept 
+	 */
+	public void postWithConsumes(){
+		target=client.target("http://localhost:8080/JerseyRest/Math");
+		resp=target.path("consume").request().accept("application/xml").post(Entity.text("Plain Text"),String.class);
+		System.out.print(resp);
+	}
+	
 }
