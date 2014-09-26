@@ -4,6 +4,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -16,9 +17,10 @@ public class MainClient {
 	public static void main(String[] args) {
 		//new MainClient().getMethod();
 		//new MainClient().postMethod();
-		new MainClient().getWithParam();
+	/*	new MainClient().getWithParam();
 		new MainClient().getWithQueryParam();
-		new MainClient().postWithConsumes();
+		new MainClient().postWithConsumes();*/
+		new MainClient().producer();
 	}
 	
 	void getMethod(){
@@ -74,6 +76,17 @@ public class MainClient {
 	public void postWithConsumes(){
 		target=client.target("http://localhost:8080/JerseyRest/Math");
 		resp=target.path("consume").request().accept("application/xml").post(Entity.text("Plain Text"),String.class);
+		System.out.print(resp);
+	}
+	
+
+	/*
+	 * MediaType.[desired content type] should be given in request(), to match produces
+	 *  
+	 */
+	void producer(){
+		target=client.target("http://localhost:8080/JerseyRest/Math");
+		resp=target.path("produce").request(MediaType.APPLICATION_JSON).get(String.class);
 		System.out.print(resp);
 	}
 	

@@ -1,5 +1,8 @@
 package com.muthu.rest;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.Cookie;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
@@ -16,6 +19,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("Math")
 public class MathService {
@@ -110,5 +117,20 @@ public class MathService {
 			return "I consume  plain text";
 		}
 		
+		
+		@Path("produce")
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public String  getName() throws JsonGenerationException, JsonMappingException, IOException{
+			Name n=new Name();
+			n.setFirst("first");
+			n.setLast("last");
+			CallName c=new CallName();
+			c.setDesiredName("Muthu");
+			c.setDisplayName("S.Muthu");
+			n.setC(c);
+			ObjectMapper om=new ObjectMapper();
+			return	om.writeValueAsString(n);
+			 
+		} 
 }
-
